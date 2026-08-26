@@ -17,7 +17,7 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> MINE = registerBlock(
             "mine",
-            properties -> new MineBlock(properties)
+            properties -> new MineBlock(3,properties)
     );
 
     //Register Block Item

@@ -3,8 +3,10 @@ package com.traps.trapsmod.block.custom;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.ExplosionDamageCalculator;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -14,9 +16,11 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class MineBlock extends Block {
     private static final VoxelShape SHAPE = Block.box(6,0,6,10,1,10);
+    private final int radius;
 
-    public MineBlock(Properties properties) {
+    public MineBlock(int radius,Properties properties) {
         super(properties);
+        this.radius = radius;
     }
 
     @Override
@@ -25,19 +29,13 @@ public class MineBlock extends Block {
     }
 
     @Override
-    public void stepOn(Level level, BlockPos pos, BlockState onState, Entity entity) {
-        System.out.println("MineBlock::stepOn");
+    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier effectApplier, boolean isPrecise) {
         explode(level,pos);
     }
 
     protected void explode(Level level,BlockPos pos) {
-        System.out.println("MineBlock::explode entered");
         if (level instanceof ServerLevel) {
-            System.out.println("MineBlock::level ok");
             level.explode(null,(double) pos.getX(),(double) pos.getY(),(double) pos.getZ(),10,Level.ExplosionInteraction.MOB);
-            System.out.println("MineBlock::boom");
-            //level.explode(null,pos.getX(),pos.getY(),pos.getZ(), Level.ExplosionInteraction.MOB);
-            //level.explode((Entity)null, level.damageSources().badRespawnPointExplosion(boomPos), damageCalculator, boomPos, 5.0F, true, ExplosionInteraction.BLOCK);
         }
     }
 }
