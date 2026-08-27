@@ -5,12 +5,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Explosion;
-import net.minecraft.world.level.ExplosionDamageCalculator;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.gamerules.GameRules;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -35,7 +32,7 @@ public class MineBlock extends Block {
 
     protected void explode(Level level,BlockPos pos) {
         if (level instanceof ServerLevel) {
-            level.explode(null,(double) pos.getX(),(double) pos.getY(),(double) pos.getZ(),10,Level.ExplosionInteraction.MOB);
+            level.explode(null,(double) pos.getX(),(double) pos.getY(),(double) pos.getZ(),radius,Level.ExplosionInteraction.MOB);
         }
     }
 }

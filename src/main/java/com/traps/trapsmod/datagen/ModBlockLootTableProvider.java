@@ -17,6 +17,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(ModBlocks.MINE.get());
+        dropSelf(ModBlocks.IMPROVED_MINE.get());
+        dropSelf(ModBlocks.BARBED_WIRE.get());
 
     }
 

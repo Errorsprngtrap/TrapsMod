@@ -24,5 +24,11 @@ public class ModModelProviders extends ModelProvider {
         //blocks
         blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(ModBlocks.MINE.get(),
                 BlockModelGenerators.plainVariant(Identifier.fromNamespaceAndPath(TrapsMod.MOD_ID,"block/mine"))));
+
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(ModBlocks.IMPROVED_MINE.get(),
+                BlockModelGenerators.plainVariant(Identifier.fromNamespaceAndPath(TrapsMod.MOD_ID,"block/improved_mine"))));
+
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(ModBlocks.BARBED_WIRE.get(),
+                BlockModelGenerators.plainVariant(Identifier.fromNamespaceAndPath(TrapsMod.MOD_ID,"block/barbed_wire"))));
     }
 }

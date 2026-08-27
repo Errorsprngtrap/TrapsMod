@@ -1,6 +1,7 @@
 package com.traps.trapsmod.block;
 
 import com.traps.trapsmod.TrapsMod;
+import com.traps.trapsmod.block.custom.BarbedWire;
 import com.traps.trapsmod.block.custom.MineBlock;
 import com.traps.trapsmod.item.ModItems;
 import net.minecraft.world.item.BlockItem;
@@ -17,7 +18,17 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> MINE = registerBlock(
             "mine",
-            properties -> new MineBlock(3,properties)
+            properties -> new MineBlock(3,properties.noCollision())
+    );
+
+    public static final DeferredBlock<Block> IMPROVED_MINE = registerBlock(
+            "improved_mine",
+            properties -> new MineBlock(6,properties.noCollision())
+    );
+
+    public static final DeferredBlock<Block> BARBED_WIRE = registerBlock(
+            "barbed_wire",
+            properties -> new BarbedWire(properties)
     );
 
     //Register Block Item
