@@ -6,6 +6,7 @@ import com.traps.trapsmod.block.custom.MineBlock;
 import com.traps.trapsmod.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CarpetBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -30,6 +31,7 @@ public class ModBlocks {
             "barbed_wire",
             properties -> new BarbedWire(1,0.25F,properties.noOcclusion().noCollision())
     );
+
 
     //Register Block Item
     private static  <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties,T> function) {

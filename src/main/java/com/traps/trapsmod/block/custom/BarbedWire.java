@@ -3,6 +3,9 @@ package com.traps.trapsmod.block.custom;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.InsideBlockEffectApplier;
@@ -18,7 +21,7 @@ import net.minecraft.world.phys.Vec3;
 import org.jspecify.annotations.Nullable;
 
 public class BarbedWire extends HorizontalDirectionalBlock {
-    public static final MapCodec<BarbedWire> CODEC = simpleCodec(BarbedWire::new);
+    public static final MapCodec<BarbedWire> CODEC = simpleCodec(properties -> new BarbedWire(1,1,properties));
     private final float damage;
     private final float speedMult;
 
@@ -44,11 +47,17 @@ public class BarbedWire extends HorizontalDirectionalBlock {
     }
 
     protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier effectApplier, boolean isPrecise) {
-        Vec3 speedMultiplier = new Vec3((double)0.25F, (double)0.05F, (double)0.25F);
+        double normalMult = (double) speedMult;
+        Vec3 speedMultiplier = new Vec3(normalMult, normalMult * 0.1, normalMult);
         if (entity instanceof LivingEntity livingEntity) {
             if (livingEntity.hasEffect(MobEffects.WEAVING)) {
-                speedMultiplier = new Vec3((double)0.5F, (double)0.25F, (double)0.5F);
+                double newNormalMult = (double) speedMult * 2;
+                speedMultiplier = new Vec3(newNormalMult, newNormalMult * 2, newNormalMult);
             }
+        }
+
+        if (level instanceof ServerLevel serverLevel) {
+            entity.hurtServer(serverLevel, serverLevel.damageSources().generic(),damage);
         }
 
         entity.makeStuckInBlock(state, speedMultiplier);
