@@ -28,7 +28,7 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> BARBED_WIRE = registerBlock(
             "barbed_wire",
-            properties -> new BarbedWire(properties)
+            properties -> new BarbedWire(1,0.25F,properties.noOcclusion().noCollision())
     );
 
     //Register Block Item
