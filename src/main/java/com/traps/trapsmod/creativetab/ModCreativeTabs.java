@@ -23,6 +23,7 @@ public class ModCreativeTabs {
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.TEST_ITEM);
                         output.accept(ModBlocks.MINE);
+                        output.accept(ModBlocks.STEALTH_MINE);
                         output.accept(ModBlocks.IMPROVED_MINE);
                         output.accept(ModBlocks.BARBED_WIRE);
 

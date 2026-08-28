@@ -17,6 +17,11 @@ import java.util.function.Function;
 public class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(TrapsMod.MOD_ID);
 
+    public static final DeferredBlock<Block> STEALTH_MINE = registerBlock(
+            "stealth_mine",
+            properties -> new MineBlock(4,properties.noCollision())
+    );
+
     public static final DeferredBlock<Block> MINE = registerBlock(
             "mine",
             properties -> new MineBlock(3,properties.noCollision())

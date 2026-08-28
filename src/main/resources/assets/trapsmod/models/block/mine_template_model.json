@@ -1,8 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "trapsmod:block/mine",
-		"particle": "trapsmod:block/mine"
+		"particle": "#0"
 	},
 	"elements": [
 		{
