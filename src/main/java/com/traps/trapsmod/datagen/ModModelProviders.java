@@ -24,6 +24,8 @@ public class ModModelProviders extends ModelProvider {
     private static final TextureSlot MINE_TEXTURE_SLOT = TextureSlot.create("0");
     private static final TextureSlot BARBED_WIRE_TEXTURE_SLOT = TextureSlot.create("0");
     private static final TextureSlot FAKE_FLOOR_TEXTURE_SLOT = TextureSlot.create("0");
+    private static final TextureSlot SPIKE_TRAP_ON_TEXTURE_SLOT = TextureSlot.create("0");
+    private static final TextureSlot SPIKE_TRAP_OFF_TEXTURE_SLOT = TextureSlot.create("0");
 
     public ModModelProviders(PackOutput output) {
         super(output, TrapsMod.MOD_ID);
@@ -72,7 +74,7 @@ public class ModModelProviders extends ModelProvider {
             );
         }
 
-        //Barbed WIRE
+        //FakeFloor
         List<Block> fakeFloorBlocks = new ArrayList<>();
         fakeFloorBlocks.add(ModBlocks.DIRT_FAKE_FLOOR.get());
         fakeFloorBlocks.add(ModBlocks.GRASS_FAKE_FLOOR.get());
@@ -89,6 +91,25 @@ public class ModModelProviders extends ModelProvider {
                                     BlockModelGenerators.plainVariant(modelID))
             );
         }
+
+        //Classic SpikeTrap
+        List<Block> Spikeblocks = new ArrayList<>();
+        mineBlocks.add(ModBlocks.SPIKE_TRAP.get());
+        mineBlocks.add(ModBlocks.POISON_SPIKE_TRAP.get());
+
+        for (Block spikeblock : Spikeblocks) {
+            Identifier modelID = spikeTrapOn.create(
+                    spikeblock,
+                    new TextureMapping().put(SPIKE_TRAP_ON_TEXTURE_SLOT,TextureMapping.getBlockTexture(spikeblock)),
+                    blockModels.modelOutput
+            );
+
+            blockModels.blockStateOutput.accept(
+                    BlockModelGenerators.createSimpleBlock(spikeblock,
+                            BlockModelGenerators.plainVariant(modelID))
+            );
+        }
+
     }
 
     ModelTemplate mineModel = new ModelTemplate(
@@ -107,6 +128,18 @@ public class ModModelProviders extends ModelProvider {
             Optional.of(Identifier.fromNamespaceAndPath(TrapsMod.MOD_ID,"block/fake_floor_template_model")),
             Optional.empty(),
             FAKE_FLOOR_TEXTURE_SLOT
+    );
+
+    ModelTemplate spikeTrapOn = new ModelTemplate(
+            Optional.of(Identifier.fromNamespaceAndPath(TrapsMod.MOD_ID,"block/spiketrap_template_model")),
+            Optional.empty(),
+            SPIKE_TRAP_ON_TEXTURE_SLOT
+    );
+
+    ModelTemplate spikeTrapOff = new ModelTemplate(
+            Optional.of(Identifier.fromNamespaceAndPath(TrapsMod.MOD_ID,"block/spiketrap_off_template_model")),
+            Optional.empty(),
+            SPIKE_TRAP_OFF_TEXTURE_SLOT
     );
 
 

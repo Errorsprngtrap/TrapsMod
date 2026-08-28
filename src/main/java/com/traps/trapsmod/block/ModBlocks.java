@@ -2,8 +2,11 @@ package com.traps.trapsmod.block;
 
 import com.traps.trapsmod.TrapsMod;
 import com.traps.trapsmod.block.custom.BarbedWire;
+import com.traps.trapsmod.block.custom.FakeFloor;
 import com.traps.trapsmod.block.custom.MineBlock;
+import com.traps.trapsmod.block.custom.SpikeTrap;
 import com.traps.trapsmod.item.ModItems;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CarpetBlock;
@@ -39,12 +42,22 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> DIRT_FAKE_FLOOR = registerBlock(
             "dirt_fake_floor",
-            properties -> new Block(properties.noCollision())
+            properties -> new FakeFloor(properties.noCollision())
     );
 
     public static final DeferredBlock<Block> GRASS_FAKE_FLOOR = registerBlock(
             "grass_fake_floor",
-            properties -> new Block(properties.noCollision())
+            properties -> new FakeFloor(properties.noCollision())
+    );
+
+    public static final DeferredBlock<Block> SPIKE_TRAP = registerBlock(
+            "spike_trap",
+            properties -> new SpikeTrap(null,3.0F,properties.noLootTable())
+    );
+
+    public static final DeferredBlock<Block> POISON_SPIKE_TRAP = registerBlock(
+            "poison_spike_trap",
+            properties -> new SpikeTrap(MobEffects.POISON,3.0F,properties.noLootTable())
     );
 
 
