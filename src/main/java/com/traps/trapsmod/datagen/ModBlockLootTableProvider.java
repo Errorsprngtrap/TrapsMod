@@ -20,7 +20,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.IMPROVED_MINE.get());
         dropSelf(ModBlocks.BARBED_WIRE.get());
         dropSelf(ModBlocks.STEALTH_MINE.get());
-
+        dropSelf(ModBlocks.DIRT_FAKE_FLOOR.get());
+        dropSelf(ModBlocks.GRASS_FAKE_FLOOR.get());
     }
 
     @Override

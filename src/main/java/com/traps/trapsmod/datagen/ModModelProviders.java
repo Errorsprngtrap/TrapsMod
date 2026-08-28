@@ -22,6 +22,8 @@ import java.util.Optional;
 
 public class ModModelProviders extends ModelProvider {
     private static final TextureSlot MINE_TEXTURE_SLOT = TextureSlot.create("0");
+    private static final TextureSlot BARBED_WIRE_TEXTURE_SLOT = TextureSlot.create("0");
+    private static final TextureSlot FAKE_FLOOR_TEXTURE_SLOT = TextureSlot.create("0");
 
     public ModModelProviders(PackOutput output) {
         super(output, TrapsMod.MOD_ID);
@@ -32,10 +34,7 @@ public class ModModelProviders extends ModelProvider {
         //items
         itemModels.generateFlatItem(ModItems.TEST_ITEM.get(), ModelTemplates.FLAT_ITEM);
 
-        blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(ModBlocks.BARBED_WIRE.get(),
-                BlockModelGenerators.plainVariant(Identifier.fromNamespaceAndPath(TrapsMod.MOD_ID,"block/barbed_wire")))
-                .with(BlockModelGenerators.ROTATION_HORIZONTAL_FACING));
-
+        //Blocks
         //Mine
         List<Block> mineBlocks = new ArrayList<>();
         mineBlocks.add(ModBlocks.MINE.get());
@@ -55,6 +54,41 @@ public class ModModelProviders extends ModelProvider {
             );
         }
 
+        //Barbed WIRE
+        List<Block> barbedWireBlocks = new ArrayList<>();
+        barbedWireBlocks.add(ModBlocks.BARBED_WIRE.get());
+
+        for (Block barbedWireBlock : barbedWireBlocks) {
+            Identifier modelID = barbedWireModel.create(
+                    barbedWireBlock,
+                    new TextureMapping().put(BARBED_WIRE_TEXTURE_SLOT,TextureMapping.getBlockTexture(barbedWireBlock)),
+                    blockModels.modelOutput
+            );
+
+            blockModels.blockStateOutput.accept(
+                    BlockModelGenerators.createSimpleBlock(barbedWireBlock,
+                            BlockModelGenerators.plainVariant(modelID))
+                                    .with(BlockModelGenerators.ROTATION_HORIZONTAL_FACING)
+            );
+        }
+
+        //Barbed WIRE
+        List<Block> fakeFloorBlocks = new ArrayList<>();
+        fakeFloorBlocks.add(ModBlocks.DIRT_FAKE_FLOOR.get());
+        fakeFloorBlocks.add(ModBlocks.GRASS_FAKE_FLOOR.get());
+
+        for (Block fakeFloorBlock : fakeFloorBlocks) {
+            Identifier modelID = fakeFloorModel.create(
+                    fakeFloorBlock,
+                    new TextureMapping().put(FAKE_FLOOR_TEXTURE_SLOT,TextureMapping.getBlockTexture(fakeFloorBlock)),
+                    blockModels.modelOutput
+            );
+
+            blockModels.blockStateOutput.accept(
+                    BlockModelGenerators.createSimpleBlock(fakeFloorBlock,
+                                    BlockModelGenerators.plainVariant(modelID))
+            );
+        }
     }
 
     ModelTemplate mineModel = new ModelTemplate(
@@ -63,11 +97,17 @@ public class ModModelProviders extends ModelProvider {
             MINE_TEXTURE_SLOT
     );
 
+    ModelTemplate barbedWireModel = new ModelTemplate(
+            Optional.of(Identifier.fromNamespaceAndPath(TrapsMod.MOD_ID,"block/barbed_wire_template_model")),
+            Optional.empty(),
+            BARBED_WIRE_TEXTURE_SLOT
+    );
 
+    ModelTemplate fakeFloorModel = new ModelTemplate(
+            Optional.of(Identifier.fromNamespaceAndPath(TrapsMod.MOD_ID,"block/fake_floor_template_model")),
+            Optional.empty(),
+            FAKE_FLOOR_TEXTURE_SLOT
+    );
 
-    //base for generator
-//    public static MultiVariantGenerator createSimpleBlock(Block block, MultiVariant variant) {
-//        return MultiVariantGenerator.dispatch(block, variant);
-//    }
 
 }

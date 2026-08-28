@@ -26,7 +26,8 @@ public class ModCreativeTabs {
                         output.accept(ModBlocks.STEALTH_MINE);
                         output.accept(ModBlocks.IMPROVED_MINE);
                         output.accept(ModBlocks.BARBED_WIRE);
-
+                        output.accept(ModBlocks.GRASS_FAKE_FLOOR);
+                        output.accept(ModBlocks.DIRT_FAKE_FLOOR);
                     })
                     .build()
     );

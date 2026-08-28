@@ -37,6 +37,16 @@ public class ModBlocks {
             properties -> new BarbedWire(1,0.25F,properties.noOcclusion().noCollision())
     );
 
+    public static final DeferredBlock<Block> DIRT_FAKE_FLOOR = registerBlock(
+            "dirt_fake_floor",
+            properties -> new Block(properties.noCollision())
+    );
+
+    public static final DeferredBlock<Block> GRASS_FAKE_FLOOR = registerBlock(
+            "grass_fake_floor",
+            properties -> new Block(properties.noCollision())
+    );
+
 
     //Register Block Item
     private static  <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties,T> function) {
