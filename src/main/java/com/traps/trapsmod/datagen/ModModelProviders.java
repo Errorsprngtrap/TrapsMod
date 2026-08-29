@@ -94,8 +94,8 @@ public class ModModelProviders extends ModelProvider {
 
         //Classic SpikeTrap
         List<Block> Spikeblocks = new ArrayList<>();
-        mineBlocks.add(ModBlocks.SPIKE_TRAP.get());
-        mineBlocks.add(ModBlocks.POISON_SPIKE_TRAP.get());
+        Spikeblocks.add(ModBlocks.SPIKE_TRAP.get());
+        Spikeblocks.add(ModBlocks.POISON_SPIKE_TRAP.get());
 
         for (Block spikeblock : Spikeblocks) {
             Identifier modelID = spikeTrapOn.create(
