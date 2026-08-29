@@ -13,9 +13,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class ModModelProviders extends ModelProvider {
     private static final TextureSlot MINE_TEXTURE_SLOT = TextureSlot.create("0");
@@ -108,20 +106,47 @@ public class ModModelProviders extends ModelProvider {
         }
 
         //Redstone SpikeTrap
-        List<Block> redstoneSpikeBlocks = new ArrayList<>();
-        redstoneSpikeBlocks.add(ModBlocks.REDSTONE_SPIKE_TRAP.get());
-        redstoneSpikeBlocks.add(ModBlocks.REDSTONE_POISON_SPIKE_TRAP.get());
+        Map<Block,Block> redstoneSpikeBlocks = new HashMap<>();
+        redstoneSpikeBlocks.put(ModBlocks.REDSTONE_SPIKE_TRAP.get(), ModBlocks.SPIKE_TRAP.get());
+        redstoneSpikeBlocks.put(ModBlocks.REDSTONE_POISON_SPIKE_TRAP.get(), ModBlocks.POISON_SPIKE_TRAP.get());
+//        List<Block> redstoneSpikeBlocks = new ArrayList<>();
+//        redstoneSpikeBlocks.add(ModBlocks.REDSTONE_SPIKE_TRAP.get());
+//        redstoneSpikeBlocks.add(ModBlocks.REDSTONE_POISON_SPIKE_TRAP.get());
 
-        for (Block spikeblock : redstoneSpikeBlocks) {
+//        for (Block spikeblock : redstoneSpikeBlocks) {
+//            Identifier modelID = spikeTrapOn.create(
+//                    spikeblock,
+//                    new TextureMapping().put(SPIKE_TRAP_ON_TEXTURE_SLOT,TextureMapping.getBlockTexture(spikeblock)),
+//                    blockModels.modelOutput
+//            );
+//
+//            Identifier modelIDOFF = spikeTrapOff.create(
+//                    spikeblock,
+//                    new TextureMapping().put(SPIKE_TRAP_OFF_TEXTURE_SLOT,TextureMapping.getBlockTexture(spikeblock)),
+//                    blockModels.modelOutput
+//            );
+//
+//            blockModels.blockStateOutput.accept(
+//                    MultiVariantGenerator.dispatch(spikeblock)
+//                            .with(BlockModelGenerators.createBooleanModelDispatch(RedstoneSpikeTrap.POWERED,
+//                                    BlockModelGenerators.plainVariant(modelID),
+//                                    BlockModelGenerators.plainVariant(modelIDOFF)))
+//            );
+//        }
+
+        for (Map.Entry<Block,Block> entry : redstoneSpikeBlocks.entrySet()) {
+            Block spikeblock = entry.getKey();
+            Block textureSource = entry.getValue();
+
             Identifier modelID = spikeTrapOn.create(
                     spikeblock,
-                    new TextureMapping().put(SPIKE_TRAP_ON_TEXTURE_SLOT,TextureMapping.getBlockTexture(spikeblock)),
+                    new TextureMapping().put(SPIKE_TRAP_ON_TEXTURE_SLOT,TextureMapping.getBlockTexture(textureSource)),
                     blockModels.modelOutput
             );
 
             Identifier modelIDOFF = spikeTrapOff.create(
                     spikeblock,
-                    new TextureMapping().put(SPIKE_TRAP_OFF_TEXTURE_SLOT,TextureMapping.getBlockTexture(spikeblock)),
+                    new TextureMapping().put(SPIKE_TRAP_OFF_TEXTURE_SLOT,TextureMapping.getBlockTexture(textureSource,"_off")),
                     blockModels.modelOutput
             );
 

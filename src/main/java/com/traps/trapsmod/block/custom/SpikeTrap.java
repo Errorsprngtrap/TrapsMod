@@ -33,7 +33,7 @@ public class SpikeTrap extends Block {
     protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier effectApplier, boolean isPrecise) {
         if (entity instanceof LivingEntity livingEntity) {
             if (effects != null) {
-                livingEntity.addEffect(new MobEffectInstance(effects, 200, 3));
+                livingEntity.addEffect(new MobEffectInstance(effects, 140, 2));
             }
         }
 
