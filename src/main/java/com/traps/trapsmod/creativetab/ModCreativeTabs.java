@@ -30,6 +30,7 @@ public class ModCreativeTabs {
                         output.accept(ModBlocks.DIRT_FAKE_FLOOR);
                         output.accept(ModBlocks.SPIKE_TRAP);
                         output.accept(ModBlocks.POISON_SPIKE_TRAP);
+                        output.accept(ModBlocks.REDSTONE_SPIKE_TRAP);
                     })
                     .build()
     );

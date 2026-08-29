@@ -12,8 +12,8 @@ public class ModEffects {
     public static final DeferredRegister<MobEffect> MOB_EFFECTS =
             DeferredRegister.create(BuiltInRegistries.MOB_EFFECT, TrapsMod.MOD_ID);
 
-    public static final Holder<MobEffect> TEST_EFFECT = MOB_EFFECTS.register("test_effect",
-            () -> new ExampleEffect(MobEffectCategory.NEUTRAL, 0xffffff)
+    public static final Holder<MobEffect> BLEED_EFFECT = MOB_EFFECTS.register("bleed_effect",
+            () -> new BleedEffect(MobEffectCategory.NEUTRAL, 0xffffff)
     );
 
     public static void register(IEventBus eventBus) {

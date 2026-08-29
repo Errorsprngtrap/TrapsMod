@@ -1,10 +1,7 @@
 package com.traps.trapsmod.block;
 
 import com.traps.trapsmod.TrapsMod;
-import com.traps.trapsmod.block.custom.BarbedWire;
-import com.traps.trapsmod.block.custom.FakeFloor;
-import com.traps.trapsmod.block.custom.MineBlock;
-import com.traps.trapsmod.block.custom.SpikeTrap;
+import com.traps.trapsmod.block.custom.*;
 import com.traps.trapsmod.item.ModItems;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
@@ -58,6 +55,16 @@ public class ModBlocks {
     public static final DeferredBlock<Block> POISON_SPIKE_TRAP = registerBlock(
             "poison_spike_trap",
             properties -> new SpikeTrap(MobEffects.POISON,3.0F,properties.noLootTable())
+    );
+
+    public static final DeferredBlock<Block> REDSTONE_SPIKE_TRAP = registerBlock(
+            "redstone_spike_trap",
+            properties -> new RedstoneSpikeTrap(null,3.0F,properties.noLootTable())
+    );
+
+    public static final DeferredBlock<Block> REDSTONE_POISON_SPIKE_TRAP = registerBlock(
+            "redstone_poison_spike_trap",
+            properties -> new RedstoneSpikeTrap(MobEffects.POISON,3.0F,properties.noLootTable())
     );
 
 

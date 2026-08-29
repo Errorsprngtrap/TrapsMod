@@ -2,19 +2,16 @@ package com.traps.trapsmod.datagen;
 
 import com.traps.trapsmod.TrapsMod;
 import com.traps.trapsmod.block.ModBlocks;
+import com.traps.trapsmod.block.custom.RedstoneSpikeTrap;
 import com.traps.trapsmod.item.ModItems;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
-import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.model.*;
-import net.minecraft.client.renderer.texture.TextureAtlas;
-import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.client.model.obj.ObjMaterialLibrary;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,12 +89,12 @@ public class ModModelProviders extends ModelProvider {
             );
         }
 
-        //Classic SpikeTrap
-        List<Block> Spikeblocks = new ArrayList<>();
-        Spikeblocks.add(ModBlocks.SPIKE_TRAP.get());
-        Spikeblocks.add(ModBlocks.POISON_SPIKE_TRAP.get());
+        //SpikeTrap
+        List<Block> spikeBlocks = new ArrayList<>();
+        spikeBlocks.add(ModBlocks.SPIKE_TRAP.get());
+        spikeBlocks.add(ModBlocks.POISON_SPIKE_TRAP.get());
 
-        for (Block spikeblock : Spikeblocks) {
+        for (Block spikeblock : spikeBlocks) {
             Identifier modelID = spikeTrapOn.create(
                     spikeblock,
                     new TextureMapping().put(SPIKE_TRAP_ON_TEXTURE_SLOT,TextureMapping.getBlockTexture(spikeblock)),
@@ -107,6 +104,32 @@ public class ModModelProviders extends ModelProvider {
             blockModels.blockStateOutput.accept(
                     BlockModelGenerators.createSimpleBlock(spikeblock,
                             BlockModelGenerators.plainVariant(modelID))
+            );
+        }
+
+        //Redstone SpikeTrap
+        List<Block> redstoneSpikeBlocks = new ArrayList<>();
+        redstoneSpikeBlocks.add(ModBlocks.REDSTONE_SPIKE_TRAP.get());
+        redstoneSpikeBlocks.add(ModBlocks.REDSTONE_POISON_SPIKE_TRAP.get());
+
+        for (Block spikeblock : redstoneSpikeBlocks) {
+            Identifier modelID = spikeTrapOn.create(
+                    spikeblock,
+                    new TextureMapping().put(SPIKE_TRAP_ON_TEXTURE_SLOT,TextureMapping.getBlockTexture(spikeblock)),
+                    blockModels.modelOutput
+            );
+
+            Identifier modelIDOFF = spikeTrapOff.create(
+                    spikeblock,
+                    new TextureMapping().put(SPIKE_TRAP_OFF_TEXTURE_SLOT,TextureMapping.getBlockTexture(spikeblock)),
+                    blockModels.modelOutput
+            );
+
+            blockModels.blockStateOutput.accept(
+                    MultiVariantGenerator.dispatch(spikeblock)
+                            .with(BlockModelGenerators.createBooleanModelDispatch(RedstoneSpikeTrap.POWERED,
+                                    BlockModelGenerators.plainVariant(modelID),
+                                    BlockModelGenerators.plainVariant(modelIDOFF)))
             );
         }
 
@@ -138,7 +161,7 @@ public class ModModelProviders extends ModelProvider {
 
     ModelTemplate spikeTrapOff = new ModelTemplate(
             Optional.of(Identifier.fromNamespaceAndPath(TrapsMod.MOD_ID,"block/spiketrap_off_template_model")),
-            Optional.empty(),
+            Optional.of("_off"),
             SPIKE_TRAP_OFF_TEXTURE_SLOT
     );
 
