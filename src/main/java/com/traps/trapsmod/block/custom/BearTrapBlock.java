@@ -7,6 +7,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.LivingEntity;
@@ -54,7 +55,10 @@ public class BearTrapBlock extends Block {
 
                     if (entity instanceof LivingEntity livingEntity) {
                         livingEntity.addEffect(new MobEffectInstance(
-                                ModEffects.BLEED_EFFECT,260,1
+                                ModEffects.BLEED_EFFECT,260,1,false,true
+                        ));
+                        livingEntity.addEffect(new MobEffectInstance(
+                                MobEffects.SLOWNESS,260,4,false,false
                         ));
                     }
 

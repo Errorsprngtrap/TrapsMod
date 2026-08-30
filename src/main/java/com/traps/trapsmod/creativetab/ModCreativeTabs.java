@@ -17,11 +17,11 @@ public class ModCreativeTabs {
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, TrapsMod.MOD_ID);
 
 
-    public static final Supplier<CreativeModeTab> TEST_TAB = CREATIVE_MODE_TABS.register("test_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.TEST_ITEM.get()))
-                    .title(Component.translatable("creativetabs.templatemod.test_tab"))
+    public static final Supplier<CreativeModeTab> TRAP_TAB = CREATIVE_MODE_TABS.register("trap_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.BANDAGE.get()))
+                    .title(Component.translatable("creativetabs.templatemod.trap_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(ModItems.TEST_ITEM);
+                        output.accept(ModItems.BANDAGE);
                         output.accept(ModBlocks.MINE);
                         output.accept(ModBlocks.STEALTH_MINE);
                         output.accept(ModBlocks.IMPROVED_MINE);

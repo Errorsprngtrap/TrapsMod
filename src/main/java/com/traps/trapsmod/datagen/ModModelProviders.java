@@ -31,7 +31,7 @@ public class ModModelProviders extends ModelProvider {
     @Override
     protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
         //items
-        itemModels.generateFlatItem(ModItems.TEST_ITEM.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.BANDAGE.get(), ModelTemplates.FLAT_ITEM);
 
         //Blocks
         //Mine
