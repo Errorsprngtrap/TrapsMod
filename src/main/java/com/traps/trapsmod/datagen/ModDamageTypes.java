@@ -12,11 +12,11 @@ import net.minecraft.world.level.Level;
 
 public class ModDamageTypes {
 
-    public static final ResourceKey<DamageType> TEST_DAMAGE= ResourceKey.create(Registries.DAMAGE_TYPE,
-            Identifier.fromNamespaceAndPath(TrapsMod.MOD_ID, "test_damage"));
+    public static final ResourceKey<DamageType> BLEED_DAMAGE = ResourceKey.create(Registries.DAMAGE_TYPE,
+            Identifier.fromNamespaceAndPath(TrapsMod.MOD_ID, "bleed_damage"));
 
     public static void bootstrap(BootstrapContext<DamageType> context) {
-        context.register(TEST_DAMAGE,new DamageType("test damage",1.0f, DamageEffects.HURT));
+        context.register(BLEED_DAMAGE,new DamageType("bleed damage",2.0f, DamageEffects.HURT));
     }
 
     public static DamageSource create(Level level, ResourceKey<DamageType> key) {

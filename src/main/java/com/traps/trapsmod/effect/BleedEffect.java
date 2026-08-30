@@ -14,13 +14,13 @@ public class BleedEffect extends MobEffect {
 
     @Override
     public boolean applyEffectTick(ServerLevel serverLevel, LivingEntity mob, int amplification) {
-        System.out.println("Effect your bleeding");
-        mob.hurtServer(serverLevel, ModDamageTypes.create(serverLevel,ModDamageTypes.TEST_DAMAGE),1.0f);
+        mob.hurtServer(serverLevel, ModDamageTypes.create(serverLevel,ModDamageTypes.BLEED_DAMAGE),1.0f);
         return super.applyEffectTick(serverLevel, mob, amplification);
     }
 
     @Override
     public boolean shouldApplyEffectTickThisTick(int tickCount, int amplification) {
-        return true;
+        int interval = 100 >> amplification;
+        return interval <= 0 || tickCount % interval == 0;
     }
 }

@@ -32,6 +32,7 @@ public class ModCreativeTabs {
                         output.accept(ModBlocks.POISON_SPIKE_TRAP);
                         output.accept(ModBlocks.REDSTONE_SPIKE_TRAP);
                         output.accept(ModBlocks.REDSTONE_POISON_SPIKE_TRAP);
+                        output.accept(ModBlocks.BEARTRAP);
                     })
                     .build()
     );

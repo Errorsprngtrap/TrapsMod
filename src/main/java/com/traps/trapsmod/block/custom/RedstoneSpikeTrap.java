@@ -12,16 +12,20 @@ import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.redstone.Orientation;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jspecify.annotations.Nullable;
 
 public class RedstoneSpikeTrap extends SpikeTrap {
     public static final BooleanProperty POWERED = BooleanProperty.create("powered");
+    private static final VoxelShape SHAPE_OFF = Block.box(0, 0, 0, 16, 1, 16);
 
     public RedstoneSpikeTrap(Holder<MobEffect> effects, Float damage, Properties properties) {
         super(effects, damage, properties);
@@ -69,4 +73,8 @@ public class RedstoneSpikeTrap extends SpikeTrap {
         }
     }
 
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return state.getValue(POWERED) ? super.getShape(state, level, pos, context) : SHAPE_OFF;
+    }
 }

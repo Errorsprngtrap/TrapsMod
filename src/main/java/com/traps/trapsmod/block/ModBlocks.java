@@ -67,6 +67,11 @@ public class ModBlocks {
             properties -> new RedstoneSpikeTrap(MobEffects.POISON,3.0F,properties.noLootTable())
     );
 
+    public static final DeferredBlock<Block> BEARTRAP = registerBlock(
+            "beartrap",
+            properties -> new BearTrapBlock(properties.noLootTable().noOcclusion())
+    );
+
 
     //Register Block Item
     private static  <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties,T> function) {

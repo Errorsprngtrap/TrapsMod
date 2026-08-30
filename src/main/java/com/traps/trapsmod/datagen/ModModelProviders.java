@@ -2,6 +2,7 @@ package com.traps.trapsmod.datagen;
 
 import com.traps.trapsmod.TrapsMod;
 import com.traps.trapsmod.block.ModBlocks;
+import com.traps.trapsmod.block.custom.BearTrapBlock;
 import com.traps.trapsmod.block.custom.RedstoneSpikeTrap;
 import com.traps.trapsmod.item.ModItems;
 import net.minecraft.client.data.models.BlockModelGenerators;
@@ -21,6 +22,7 @@ public class ModModelProviders extends ModelProvider {
     private static final TextureSlot FAKE_FLOOR_TEXTURE_SLOT = TextureSlot.create("0");
     private static final TextureSlot SPIKE_TRAP_ON_TEXTURE_SLOT = TextureSlot.create("0");
     private static final TextureSlot SPIKE_TRAP_OFF_TEXTURE_SLOT = TextureSlot.create("0");
+    private static final TextureSlot BEARTRAP_TEXTURE_SLOT = TextureSlot.create("0");
 
     public ModModelProviders(PackOutput output) {
         super(output, TrapsMod.MOD_ID);
@@ -109,30 +111,6 @@ public class ModModelProviders extends ModelProvider {
         Map<Block,Block> redstoneSpikeBlocks = new HashMap<>();
         redstoneSpikeBlocks.put(ModBlocks.REDSTONE_SPIKE_TRAP.get(), ModBlocks.SPIKE_TRAP.get());
         redstoneSpikeBlocks.put(ModBlocks.REDSTONE_POISON_SPIKE_TRAP.get(), ModBlocks.POISON_SPIKE_TRAP.get());
-//        List<Block> redstoneSpikeBlocks = new ArrayList<>();
-//        redstoneSpikeBlocks.add(ModBlocks.REDSTONE_SPIKE_TRAP.get());
-//        redstoneSpikeBlocks.add(ModBlocks.REDSTONE_POISON_SPIKE_TRAP.get());
-
-//        for (Block spikeblock : redstoneSpikeBlocks) {
-//            Identifier modelID = spikeTrapOn.create(
-//                    spikeblock,
-//                    new TextureMapping().put(SPIKE_TRAP_ON_TEXTURE_SLOT,TextureMapping.getBlockTexture(spikeblock)),
-//                    blockModels.modelOutput
-//            );
-//
-//            Identifier modelIDOFF = spikeTrapOff.create(
-//                    spikeblock,
-//                    new TextureMapping().put(SPIKE_TRAP_OFF_TEXTURE_SLOT,TextureMapping.getBlockTexture(spikeblock)),
-//                    blockModels.modelOutput
-//            );
-//
-//            blockModels.blockStateOutput.accept(
-//                    MultiVariantGenerator.dispatch(spikeblock)
-//                            .with(BlockModelGenerators.createBooleanModelDispatch(RedstoneSpikeTrap.POWERED,
-//                                    BlockModelGenerators.plainVariant(modelID),
-//                                    BlockModelGenerators.plainVariant(modelIDOFF)))
-//            );
-//        }
 
         for (Map.Entry<Block,Block> entry : redstoneSpikeBlocks.entrySet()) {
             Block spikeblock = entry.getKey();
@@ -155,6 +133,32 @@ public class ModModelProviders extends ModelProvider {
                             .with(BlockModelGenerators.createBooleanModelDispatch(RedstoneSpikeTrap.POWERED,
                                     BlockModelGenerators.plainVariant(modelID),
                                     BlockModelGenerators.plainVariant(modelIDOFF)))
+            );
+        }
+
+        //Beartrap
+        List<Block> beartrapBlocks = new ArrayList<>();
+        beartrapBlocks.add(ModBlocks.BEARTRAP.get());
+
+        for (Block beartrapBlock : beartrapBlocks) {
+
+            Identifier modelID = beartrapOpen.create(
+                    beartrapBlock,
+                    new TextureMapping().put(BEARTRAP_TEXTURE_SLOT,TextureMapping.getBlockTexture(beartrapBlock)),
+                    blockModels.modelOutput
+            );
+
+            Identifier modelIDClosed = beartrapClose.create(
+                    beartrapBlock,
+                    new TextureMapping().put(BEARTRAP_TEXTURE_SLOT,TextureMapping.getBlockTexture(beartrapBlock)),
+                    blockModels.modelOutput
+            );
+
+            blockModels.blockStateOutput.accept(
+                    MultiVariantGenerator.dispatch(beartrapBlock)
+                            .with(BlockModelGenerators.createBooleanModelDispatch(BearTrapBlock.CLOSED,
+                                    BlockModelGenerators.plainVariant(modelIDClosed),
+                                    BlockModelGenerators.plainVariant(modelID)))
             );
         }
 
@@ -190,5 +194,16 @@ public class ModModelProviders extends ModelProvider {
             SPIKE_TRAP_OFF_TEXTURE_SLOT
     );
 
+    ModelTemplate beartrapOpen = new ModelTemplate(
+            Optional.of(Identifier.fromNamespaceAndPath(TrapsMod.MOD_ID,"block/beartrap_template_model")),
+            Optional.empty(),
+            BEARTRAP_TEXTURE_SLOT
+    );
+
+    ModelTemplate beartrapClose = new ModelTemplate(
+            Optional.of(Identifier.fromNamespaceAndPath(TrapsMod.MOD_ID,"block/closed_beartrap_template_model")),
+            Optional.of("closed"),
+            BEARTRAP_TEXTURE_SLOT
+    );
 
 }
