@@ -14,18 +14,16 @@ public class Bandage extends Item {
 
     @Override
     public InteractionResult use(Level level, Player player, InteractionHand hand) {
-        if (!level.isClientSide()) {
-            if (player.hasEffect(ModEffects.BLEED_EFFECT)) {
-                player.removeEffect(ModEffects.BLEED_EFFECT);
-
-                player.getItemInHand(hand).consume(1,player);
-                return InteractionResult.SUCCESS;
-            } else {
-                return InteractionResult.FAIL;
-            }
+        if (!player.hasEffect(ModEffects.BLEED_EFFECT)) {
+            return InteractionResult.FAIL;
         }
 
-        return this.use(level, player, hand);
+        if (!level.isClientSide()) {
+            player.removeEffect(ModEffects.BLEED_EFFECT);
+            player.getItemInHand(hand).consume(1, player);
+        }
+
+        return InteractionResult.SUCCESS;
     }
 
 }
