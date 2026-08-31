@@ -16,7 +16,7 @@ public class ModDamageTypes {
             Identifier.fromNamespaceAndPath(TrapsMod.MOD_ID, "bleed_damage"));
 
     public static void bootstrap(BootstrapContext<DamageType> context) {
-        context.register(BLEED_DAMAGE,new DamageType("bleed damage",2.0f, DamageEffects.HURT));
+        context.register(BLEED_DAMAGE,new DamageType("bleed_damage",2.0f, DamageEffects.HURT));
     }
 
     public static DamageSource create(Level level, ResourceKey<DamageType> key) {

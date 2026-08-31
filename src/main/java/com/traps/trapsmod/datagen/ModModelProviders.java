@@ -134,6 +134,8 @@ public class ModModelProviders extends ModelProvider {
                                     BlockModelGenerators.plainVariant(modelID),
                                     BlockModelGenerators.plainVariant(modelIDOFF)))
             );
+
+            blockModels.registerSimpleItemModel(spikeblock, modelIDOFF);
         }
 
         //Beartrap

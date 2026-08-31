@@ -1,5 +1,22 @@
 {
-  "item.templatemod.test_item": "Test Item",
-  "block.templatemod.test_block": "Test Block",
-  "creativetabs.templatemod.test_tab" : "Test Tab",
+  "itemGroup.trapsmod.trap_tab": "Traps",
+  "creativetabs.trapsmod.trap_tab": "Traps",
+
+  "item.trapsmod.bandage": "Bandage",
+
+  "block.trapsmod.mine": "Mine",
+  "block.trapsmod.improved_mine": "Improved Mine",
+  "block.trapsmod.stealth_mine": "Stealth Mine",
+  "block.trapsmod.barbed_wire": "Barbed Wire",
+  "block.trapsmod.dirt_fake_floor": "Dirt Fake Floor",
+  "block.trapsmod.grass_fake_floor": "Grass Fake Floor",
+  "block.trapsmod.spike_trap": "Spike Trap",
+  "block.trapsmod.poison_spike_trap": "Poison Spike Trap",
+  "block.trapsmod.redstone_spike_trap": "Redstone Spike Trap",
+  "block.trapsmod.redstone_poison_spike_trap": "Redstone Poison Spike Trap",
+  "block.trapsmod.beartrap": "Bear Trap",
+
+  "effect.trapsmod.bleed_effect": "Bleed",
+
+  "death.attack.bleed_damage": "%1$s bled out"
 }

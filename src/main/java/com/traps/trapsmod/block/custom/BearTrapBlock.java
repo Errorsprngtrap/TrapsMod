@@ -73,4 +73,11 @@ public class BearTrapBlock extends Block {
         return COLLISION_SHAPE;
     }
 
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+        if (state.getValue(CLOSED)) {
+            level.setBlock(pos,state.setValue(CLOSED,false), 3);
+        }
+        return super.useWithoutItem(state, level, pos, player, hitResult);
+    }
 }

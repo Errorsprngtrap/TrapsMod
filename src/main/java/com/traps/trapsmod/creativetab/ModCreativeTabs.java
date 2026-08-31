@@ -19,7 +19,7 @@ public class ModCreativeTabs {
 
     public static final Supplier<CreativeModeTab> TRAP_TAB = CREATIVE_MODE_TABS.register("trap_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.BANDAGE.get()))
-                    .title(Component.translatable("creativetabs.templatemod.trap_tab"))
+                    .title(Component.translatable("creativetabs.trapsmod.trap_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.BANDAGE);
                         output.accept(ModBlocks.MINE);

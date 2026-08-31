@@ -20,9 +20,12 @@ public class Bandage extends Item {
 
                 player.getItemInHand(hand).consume(1,player);
                 return InteractionResult.SUCCESS;
+            } else {
+                return InteractionResult.FAIL;
             }
         }
-        return InteractionResult.FAIL;
+
+        return this.use(level, player, hand);
     }
 
 }
