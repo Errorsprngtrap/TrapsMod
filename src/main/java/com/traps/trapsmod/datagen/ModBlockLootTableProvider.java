@@ -18,10 +18,19 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     protected void generate() {
         dropSelf(ModBlocks.MINE.get());
         dropSelf(ModBlocks.IMPROVED_MINE.get());
-        dropSelf(ModBlocks.BARBED_WIRE.get());
         dropSelf(ModBlocks.STEALTH_MINE.get());
+
+        dropSelf(ModBlocks.BARBED_WIRE.get());
+
         dropSelf(ModBlocks.DIRT_FAKE_FLOOR.get());
         dropSelf(ModBlocks.GRASS_FAKE_FLOOR.get());
+
+        dropSelf(ModBlocks.BEARTRAP.get());
+
+        dropSelf(ModBlocks.SPIKE_TRAP.get());
+        dropSelf(ModBlocks.REDSTONE_SPIKE_TRAP.get());
+        dropSelf(ModBlocks.REDSTONE_POISON_SPIKE_TRAP.get());
+        dropSelf(ModBlocks.POISON_SPIKE_TRAP.get());
     }
 
     @Override

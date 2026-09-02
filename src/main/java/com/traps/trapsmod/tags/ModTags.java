@@ -23,6 +23,11 @@ public class ModTags {
 
     public static class  Blocks{
         //create tag example just below
+        public static final TagKey<Block> MINE = createTag("mine");
+        public static final TagKey<Block> BEARTRAP = createTag("beartrap");
+        public static final TagKey<Block> FAKE_FLOOR = createTag("fake_floor");
+        public static final TagKey<Block> SPIKE = createTag("spike");
+        public static final TagKey<Block> BARBED_WIRE = createTag("barbed_wire");
 
         //that shit create the tags
         private static TagKey<Block> createTag(String name){

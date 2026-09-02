@@ -19,22 +19,30 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> STEALTH_MINE = registerBlock(
             "stealth_mine",
-            properties -> new MineBlock(4,properties.noCollision())
+            properties -> new MineBlock(4,properties.noCollision()
+                    .requiresCorrectToolForDrops()
+            )
     );
 
     public static final DeferredBlock<Block> MINE = registerBlock(
             "mine",
-            properties -> new MineBlock(3,properties.noCollision())
+            properties -> new MineBlock(3,properties.noCollision()
+                    .requiresCorrectToolForDrops()
+            )
     );
 
     public static final DeferredBlock<Block> IMPROVED_MINE = registerBlock(
             "improved_mine",
-            properties -> new MineBlock(6,properties.noCollision())
+            properties -> new MineBlock(6,properties.noCollision()
+                    .requiresCorrectToolForDrops()
+            )
     );
 
     public static final DeferredBlock<Block> BARBED_WIRE = registerBlock(
             "barbed_wire",
-            properties -> new BarbedWire(1,0.25F,properties.noOcclusion().noCollision())
+            properties -> new BarbedWire(1,0.25F,
+                    properties.requiresCorrectToolForDrops().noOcclusion().noCollision()
+                            .strength(1,1))
     );
 
     public static final DeferredBlock<Block> DIRT_FAKE_FLOOR = registerBlock(
@@ -49,27 +57,36 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> SPIKE_TRAP = registerBlock(
             "spike_trap",
-            properties -> new SpikeTrap(null,3.0F,properties.noLootTable())
+            properties -> new SpikeTrap(null,3.0F,
+                    properties.strength(1,1).requiresCorrectToolForDrops()
+            )
     );
 
     public static final DeferredBlock<Block> POISON_SPIKE_TRAP = registerBlock(
             "poison_spike_trap",
-            properties -> new SpikeTrap(MobEffects.POISON,3.0F,properties.noLootTable())
+            properties -> new SpikeTrap(MobEffects.POISON,3.0F,
+                    properties.strength(1,1).requiresCorrectToolForDrops()
+            )
     );
 
     public static final DeferredBlock<Block> REDSTONE_SPIKE_TRAP = registerBlock(
             "redstone_spike_trap",
-            properties -> new RedstoneSpikeTrap(null,3.0F,properties.noLootTable())
+            properties -> new RedstoneSpikeTrap(null,3.0F,
+                    properties.strength(1,1).requiresCorrectToolForDrops()
+            )
     );
 
     public static final DeferredBlock<Block> REDSTONE_POISON_SPIKE_TRAP = registerBlock(
             "redstone_poison_spike_trap",
-            properties -> new RedstoneSpikeTrap(MobEffects.POISON,3.0F,properties.noLootTable())
+            properties -> new RedstoneSpikeTrap(MobEffects.POISON,3.0F,
+                    properties.strength(1,1).requiresCorrectToolForDrops()
+            )
     );
 
     public static final DeferredBlock<Block> BEARTRAP = registerBlock(
             "beartrap",
-            properties -> new BearTrapBlock(properties.noLootTable().noOcclusion())
+            properties -> new BearTrapBlock(properties.requiresCorrectToolForDrops().noOcclusion()
+                    .strength(1.0F,1.0F))
     );
 
 
